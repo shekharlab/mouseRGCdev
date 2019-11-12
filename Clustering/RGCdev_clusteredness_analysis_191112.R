@@ -106,7 +106,7 @@ WithinCrossClusterDist = function(df, coord_ids = c("UMAP1","UMAP2")){
                                     function(x){
                                       cents = as.matrix(df_cent[-which(rownames(df_cent) == clust),coord_ids]);
                                       vec = as.numeric(df[x, coord_ids])
-                                      distx = min(sqrt(rowSums(sweep(cents,2,vec)^2)));
+                                      distx = mean(sqrt(rowSums(sweep(cents,2,vec)^2)));
                                       return(distx)
                                     } )
     )
@@ -117,6 +117,10 @@ WithinCrossClusterDist = function(df, coord_ids = c("UMAP1","UMAP2")){
   
 }
 
+# linMap
+linMap <- function(x, from, to){
+  (x - min(x)) / max(x - min(x)) * (to - from) + from
+}
 
 # Compute validation errors as part of a training paradigm
 objects = c("rgc_atlas","rgcP5", "rgcP0", "rgcE16", "rgcE14","rgcE13")
@@ -151,7 +155,6 @@ for (n in c(1:6)){
   
 }
 
-class_errors_vec[3] = 0.177; class_errors_vec[4] = 0.217; class_errors_vec[6] = 0.308
 class_errors_vec = rev(class_errors_vec)
 save(list=c("class_errors_vec", "class_errors"), file="Xgboost_class_errors.Rdata")
 
@@ -167,6 +170,10 @@ for (n in c(1:6)){
   # UMAP
   eval(parse(text=paste0("train_object = ", objects[n])))
   df = as.data.frame(train_object@dr$UMAP@cell.embeddings)
+  df$UMAP1 = linMap(df$UMAP1,-1,1)
+  df$UMAP2 = linMap(df$UMAP2,-1,1)
+    
+  
   df$cluster = train_object@data.info[,cluster_ids[n]]
   
   res1 = WithinCrossClusterDist(df)
@@ -174,32 +181,30 @@ for (n in c(1:6)){
   cluster_dists_UMAP[[ages[n]]]$self = res1$within_clust_dist
   
   # Liger (n=10)
-  eval(parse(text=paste0("train_object = ", objects[n])))
-  df = as.data.frame(train_object@dr$pca@cell.embeddings[,1:10])
-  df$cluster = train_object@data.info[,cluster_ids[n]]
+  #eval(parse(text=paste0("train_object = ", objects[n])))
+  #df = as.data.frame(train_object@dr$pca@cell.embeddings[,1:10])
+  #df$cluster = train_object@data.info[,cluster_ids[n]]
   
-  res1 = WithinCrossClusterDist(df, coord_ids = paste0("PC",c(1:10)))
-  cluster_dists_ligern10[[ages[n]]]$cross = res1$cross_clust_dist
-  cluster_dists_ligern10[[ages[n]]]$self = res1$within_clust_dist
+  #res1 = WithinCrossClusterDist(df, coord_ids = paste0("PC",c(1:10)))
+  #cluster_dists_ligern10[[ages[n]]]$cross = res1$cross_clust_dist
+  #cluster_dists_ligern10[[ages[n]]]$self = res1$within_clust_dist
   
   # Liger (n=20)
-  eval(parse(text=paste0("train_object = ", objects[n])))
-  df = as.data.frame(train_object@dr$pca@cell.embeddings[,1:20])
-  df$cluster = train_object@data.info[,cluster_ids[n]]
+ # eval(parse(text=paste0("train_object = ", objects[n])))
+  #df = as.data.frame(train_object@dr$pca@cell.embeddings[,1:20])
+  #df$cluster = train_object@data.info[,cluster_ids[n]]
   
-  res1 = WithinCrossClusterDist(df, coord_ids = paste0("PC",c(1:20)))
-  cluster_dists_ligern20[[ages[n]]]$cross = res1$cross_clust_dist
-  cluster_dists_ligern20[[ages[n]]]$self = res1$within_clust_dist
+  #res1 = WithinCrossClusterDist(df, coord_ids = paste0("PC",c(1:20)))
+  #cluster_dists_ligern20[[ages[n]]]$cross = res1$cross_clust_dist
+  #cluster_dists_ligern20[[ages[n]]]$self = res1$within_clust_dist
   
 }
 
 dist_ratio = rep(0, 6); names(dist_ratio) = rev(ages)
 for (n in c(1:6)){
-  dist_ratio[ages[n]] = mean(cluster_dists_UMAP[[ages[n]]]$cross/cluster_dists_UMAP[[ages[n]]]$self)
+  dist_ratio[ages[n]] = median(cluster_dists_UMAP[[ages[n]]]$cross/cluster_dists_UMAP[[ages[n]]]$self)
 }
-dist_ratio["P0"] = 3.67712
-dist_ratio["P5"] = 4.1
-dist_ratio["P56"] = 4.8
+
 
 df1 = data.frame(class_errors = class_errors_vec, dist_ratio = 1/dist_ratio)
 df1$age = rownames(df1)
@@ -208,3 +213,8 @@ ggplot(df1, aes(x=age, y=class_errors)) + geom_bar(stat="identity", fill="blue")
 ggplot(df1, aes(x=age, y=dist_ratio)) + geom_bar(stat="identity", fill="red") + theme_classic() + xlab("Age") + ylab("Within Cluster / Cross Cluster")
 dev.off()
 
+df1 = data.frame(dist_ratio = 1/dist_ratio)
+df1$age = rownames(df1)
+pdf("Figs/Clusteredness_metrics_final_dist.pdf",w=5,h=4, useDingbats = FALSE)
+ggplot(df1, aes(x=age, y=dist_ratio)) + geom_bar(stat="identity", fill="red") + theme_classic() + xlab("Age") + ylab("Within Cluster / Cross Cluster")
+dev.off()

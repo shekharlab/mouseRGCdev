@@ -75,3 +75,7 @@ pdf("Figs/RGC_perturb_tsne_umap_batch.pdf", w=9,h=7, useDingbats=FALSE)
 DimPlot(rgc_perturb, reduction.use = "UMAP", pt.size=0.4, do.label = FALSE, cols.use = c("red", "cyan","darkblue"))
 DimPlot(rgc_perturb, reduction.use = "tsne", pt.size=0.4, do.label = FALSE, cols.use = c("yellow", "red", "cyan","darkblue"))
 dev.off()
+
+dir.create("Objects")
+save(list=c("rgc_perturb"), file="Objects/rgc_perturb_190704.Rdata")
+rgc_perturb = readRDS("Objects/rgc_perturb_190704.rds")

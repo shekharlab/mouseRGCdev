@@ -119,6 +119,24 @@ plot_dendro_withdotplot(rgc_perturb,c("Gap43","Rtn1","Sncg","Rbpms","Nefl","Pou4
 
 save(list=c("rgc_perturb"), file="Objects/rgc_perturb_filt_191122.Rdata")
 
+
+
+#rgc_perturb = readRDS("Objects/rgc_perturb_190704.rds")
+
+# Only use RGCs
+#load("../RawData/RGC_cellIDs_bcless_rgc_perturb_dr.Rdata")
+#Count.mat0 = Count.mat0[, rgc_cells]
+
+
+
+
+
+
+
+
+
+
+
 dir.create("Figs")
 
 rgc_perturb = set.all.ident(rgc_perturb, id="m")

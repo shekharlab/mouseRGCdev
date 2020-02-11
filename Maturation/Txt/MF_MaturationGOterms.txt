@@ -1,0 +1,34 @@
+GO.ID	Term	Module1	Module2	Module3	Module4	Module5	Module6
+1	GO:0001972	retinoic acid binding	Crabp1,Crabp2,Nr2f2	Fabp5				
+2	GO:0035925	mRNA 3'-UTR AU-rich region binding	Hnrnpa0,Mex3d,Hnrnpd,Elavl4			Rbms3	Cpeb2	
+3	GO:0061980	regulatory RNA binding	Mbd2,Matr3,Dhx9					
+4	GO:1990841	promoter-specific chromatin binding	Chd7,Dhx9,Ezh2,Ddx5	Hdac2,Isl1		Pou4f2,Hnrnpu	Ppargc1a	Nfe2l1,Egr1
+5	GO:0048027	mRNA 5'-UTR binding	Igf2bp2,Igf2bp1,Myh10	Rps7,Rps13,Rpl5	Rps14,Rpl26	Ncl		
+6	GO:0043021	ribonucleoprotein complex binding	Ybx3,Dhx9,Ezh2,Top2b,Hspa5,Ddx5	Rpsa,Prmt1,Rbm3,Eef2,Snrpe,Eif5a,Eif1	Rpl35,Snrpg,Rpl35a,Rplp1,Xist	Hnrnpu	Uhmk1,Cpeb2	Impact
+7	GO:0003735	structural constituent of ribosome		Rps12,Rpl10,Rpl9,Rpl11,Rpsa,Rps7,Rpl17,Rpl21,Rps13,Rpl10a,Rplp0,Rpl7,Rpl18,Rps4x,Rps2,Rpl28,Rpl12,Rpl5,Rpl29,Rps10,Rps27a,Rpl27a,Rpl19,Rps20,Rpl30,Rps3a1,Rps11,Rpl23,Rps5,Rps9,Rpl22,Rps27l,Rpl8,Rps24,Rps3	Rpl23a,Rps27,Rpl23a-ps3,Rpl31,Rps17,Rps29,Rpl27,Rpl36,Rps28,Rpl39,Rpl35,Rpl41,Fau,Rpl37,Rps18,Rpl37a,Rps26,Rps19,Rps23,Rpl38,Rpl6,Rps16,Rps15a,Rplp2,Rpl24,Rps25,Rps8,Rpl18a,Rpl13,Rpl15,Rpl35a,Rps15,Rps6,Rpl32,Rplp1,Mrpl52,Rps14,Gm2000,Mrpl23,Rpl26,Rpl3,Rpl14,Mrps21,Rpl13a			
+8	GO:0055106	ubiquitin-protein transferase regulator activity		Rpl11,Rps7,Rpl5,Rpl23				
+9	GO:0031492	nucleosomal DNA binding	H1fx	H3f3a,Hmgn1,H2afz,H3f3b			Hmgn3	
+10	GO:0031005	filamin binding		Dpysl3,Dpysl4,Crmp1	Fblim1			
+11	GO:0008301	DNA binding, bending		Hmgb2,Hmgb3,Hmgb1				
+12	GO:0016810	hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds	Cda,Gls	Ddah2,Dpysl3,Dpysl4,Crmp1,Dpysl5,Hdac2	Ddah1	Adar	Adarb1	Nacc2,Hdac11,Sirt3
+13	GO:0019843	rRNA binding		Rpl9,Rpl11,Rpl17,Rps13,Rplp0,Rpl7,Rps4x,Rpl12,Rpl5,Rpl19,Rps11,Rpl23,Rps5,Rbm3,Eef2,Rps9,Rpl8,Rps3	Rpl23a,Rpl37,Rps18,Rpl37a,Rpl6,Cirbp,Rps14,Rpl3	Ncl		
+14	GO:0009055	electron transfer activity			Cox7c,Uqcrb,Cox6c,Cycs,Uqcr11		Cox7b	Cox4i2,Sdha,Uqcr10,Ndufa12
+15	GO:0046933	proton-transporting ATP synthase activity, rotational mechanism		Atp5g2	Atp5l,Atp5g1			Gm10250
+16	GO:0005516	calmodulin binding	Map2,Myh10,Marcks,Ddx5	Cnn3,Ngfr,Marcksl1,Gap43		Add3,Camk4,Kcnq3,Scn3a,Atp2b1,Map6,Sptbn1,Camk1d,Pde1c,Camsap2	Plcb1,Adcy1,Unc13c,Myo5a,Camk2b,Atp2b2,Atp2b4,Syt7,Myo1b,Ryr2,Ppp3cb	Nrgn,Pcp4,Rit2,Syt1,Camkv,Grin1,Camk2d,Arpp21,Vamp2,Ppp3ca,Kcnq2
+17	GO:0008046	axon guidance receptor activity	Gfra3,Palld			Robo2,L1cam,Ephb1		Sema5a
+18	GO:0008143	poly(A) binding			Rbpms	Hnrnpu,Rbms1,Pabpc1,Rbms3		
+19	GO:0008574	ATP-dependent microtubule motor activity, plus-end-directed		Dynll1		Kif5a,Wdr60,Dync1i2,Kif1b		Dync1i1,Dynll2,Kif1a
+20	GO:0030165	PDZ domain binding		Gng5		Gria1,Erc2,Apba1,Atp2b1,L1cam,Crim1	Gria3,Nsf,Gria2,Atp2b2,Atp2b4,Cadm1	Cit,Dlg2,Kcnj9,Cacng3,Lin7b
+21	GO:1990782	protein tyrosine kinase binding	Eif3a			Shc4,Clasp2,Dscam,Grm5	Dusp3,Epha4	Rasgrf1,Anxa5,Phyhip,Gas6
+22	GO:0005544	calcium-dependent phospholipid binding					Cpne4,Cpne9,Syt7,Rph3a,Cpne8,Syt4,Cpne5	Anxa2,Syt1,Cpne6,Anxa6,Anxa5,Syt2,Anxa7,Syt6
+23	GO:0004970	ionotropic glutamate receptor activity				Gria1	Gria3,Gria2,Grin2b,Gria4	Grin2a,Grin1
+24	GO:0097110	scaffold protein binding	Vim	Dynll1	Shank1	Gria1,Kif5a,Kif1b	Grin2b,Atp2b4,Xiap,Ryr2,Nlgn3,Cacna1g	Map2k1,Grin2a,Cit,Dynll2
+25	GO:0043008	ATP-dependent protein binding					Nsf,Myo5a,Dnajc5	Prnp
+26	GO:0017075	syntaxin-1 binding					Nsf,Unc13c,Myo5a,Syt4	Snap25,Syt1,Cplx1,Synpr,Vamp2,Cplx2,Snph,Syp,Stxbp1
+27	GO:0005546	phosphatidylinositol-4,5-bisphosphate binding	Cadps	Pfn1		Apba1	Plcb1,Syt7,Myo1b,Rph3a,Snap91	Anxa2,Syt1,Hcn1,Sytl2,Phlda3
+28	GO:0044325	ion channel binding	Akap6,Ctnnb1	S100a10	Fgf13,Ap2m1	Kcnq3,Flna,Ppp1r9a	Rims1,Dpp10,Pde4b	Scn1b,Snap25,Kcnab2,Kcnb1,Kcnc1,Camk2d,Kcnc2,Vamp2,Prnp,Ank1,Calm1,Arrb1,Kcnip1,Ywhah,Fgf12,Grina,Ank3,Vdac1,Fkbp1b
+29	GO:0048306	calcium-dependent protein binding	Ddx5		S100a11,Rac3		Syn2,Myo5a	Snap25,Anxa2,Syt1,Anxa6,Vamp2,Cplx2,Calm1,Anxa7,Syn1,Syt6
+30	GO:0005539	glycosaminoglycan binding	Vcan,Sulf2,Nrp1,Slit2,Nav2	Rpl29,Dpysl3,Rpl22,Adamts5		Mstn,Nell2,Serpine2	Nrp2,Hbegf,Nell1,App	Fgf1,Anxa6,Anxa5,Habp4,Spock3,Hapln4,Spock2,Lpl,Extl2,Aplp2,Prnp,Lrpap1,Fgf9,Vegfb,Fgf12,Sema5a,Fstl1
+31	GO:1904315	transmitter-gated ion channel activity involved in regulation of postsynaptic membrane potential	Chrna3			Gria1,Gabrb3,Gabra3	Gria3,Gria2,Grin2b,Gabrg3,Gria4	Chrna6,Gabra1,Grin2a,Glrb,Chrnb3,Grin1,Gabra2,Gabrb1,Gabrg2
+32	GO:0008553	proton-exporting ATPase activity, phosphorylative mechanism		Atp6v1g1	Atp5l			Atp6v1g2,Atp6v1c1,Atp2a2,Atp6v1e1,Atp6v0b
+33	GO:0005248	voltage-gated sodium channel activity				Scn3a	Scn8a	Scn1b,Scn2b,Scn1a,Hcn1,Asic2

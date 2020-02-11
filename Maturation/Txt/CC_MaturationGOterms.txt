@@ -1,0 +1,35 @@
+GO.ID	Term	Module1	Module2	Module3	Module4	Module5	Module6
+1	GO:0005790	smooth endoplasmic reticulum	Hsp90b1,Map2,Calr,Hspa5,Pdia3	Rpl10,Gabarap		Plcb4,Canx	Ttyh1,Myo5a,Ryr2	Itpr1
+2	GO:1990907	beta-catenin-TCF complex	Tle1,Tcf4,Ctnnb1			Tle4		
+3	GO:0005844	polysome	Vim,Elavl4,Myh10,Dhx9,Calr,Msi2	Rpl7a,Rpl11,Btf3,Rpl17,Rpl10a,Rpl7,Rpl18,Rps4x,Rpl29,Rpl19,Rpl30,Eef2,Rpl8,Rps3	Rpl31,Rps29,Rps28,Rpl39,Rps26,Rps23,Rpl38,Rpl6,Rpl24,Rps25,Rpl18a,Rps6	Fxr1	Cpeb2	Impact
+4	GO:0001669	acrosomal vesicle	Itgb1,Skil,Calr,Ctnna1,Pdia3		Slirp		Trip11	Rab3a,Slc2a3
+5	GO:0005883	neurofilament	Nefm,Nrp1	Ina		Nefl		Pcp4,Nefh
+6	GO:0030426	growth cone	Cnr1,Cxcr4,Elavl4,Map2,Myh10,Nrp1,Dcx,Palld	Tubb3,Dpysl3,Fscn1,Csnk1e,Cfl1,Dbn1,Arpc3,Crmp1	Rac3,Mapt,Fgf13	Apc,Erc2,Myo9a,Clasp2,Dscam,Flna,Kif5a,Olfm1,Nefl,Tmod2,Ppp1r9a,L1cam,Zfp804a	Gria2,Timp2,Epha4,Nptxr,Nptx2,Rapgef4,Pafah1b1,App	Thy1,Sncb,Rasgrf1,Eno2,Snap25,Nrsn1,Cbx6,Grin1,Crtac1,Clu,Eno1,Calm1,Aatk,Pink1,Pcdh9
+7	GO:0022625	cytosolic large ribosomal subunit		Rps12,Rpl10,Rpl7a,Rpl9,Rpl11,Rpl17,Rpl21,Rpl10a,Rplp0,Rpl7,Rpl18,Rpl28,Rpl12,Rpl5,Rpl29,Rpl27a,Rpl19,Rpl30,Rpl23,Rpl22,Rpl8	Rpl23a,Rpl23a-ps3,Rpl31,Rpl27,Rpl36,Rpl36a,Rpl39,Rpl35,Rpl37,Rpl37a,Rpl38,Rpl6,Rplp2,Rpl24,Rpl18a,Rpl13,Rpl15,Rpl35a,Rpl34,Rpl32,Rplp1,Rpl26,Rpl3,Rpl14,Uba52,Rpl13a			
+8	GO:0022627	cytosolic small ribosomal subunit		Rps12,Rpsa,Rps7,Rps13,Rps4x,Rps2,Rps10,Rps27a,Rps20,Rps3a1,Rps11,Rps5,Rps9,Rps27l,Rps24,Rps3	Rps27,Rps17,Rps29,Rps28,Fau,Gm9493,Rps18,Rps26,Rps19,Rps23,Rps16,Rps15a,Rps25,Rps8,Rps15,Rps6,Rps14,Uba52			
+9	GO:1990124	messenger ribonucleoprotein complex		Ybx1,Hnrnpa3,Hspa8		Pabpc1	Cpeb2	
+10	GO:0030027	lamellipodium	Myh10,Ctnnb1,Ctnna1	Tubb3,Dpysl3,Fscn1,Gsn,Cfl1,Dbn1,Arpc3,Evl		Apc,Ablim3,Ccdc88a,Rock1,Kitl,Ppp1r9a,Srcin1,Ablim1	Cdc42bpa,App	Snap25,Kcna2,Stx4a,Wasl,Sh3bp1,Wasf3
+11	GO:0099523	presynaptic cytosol		Marcksl1,Hnrnpab,Hspa8		Ppfia2	Prkce	Sncb,Calb1,Sh3gl2,Prkcb
+12	GO:0000788	nuclear nucleosome		H3f3a,Hist3h2a,H3f3b				
+13	GO:0042788	polysomal ribosome	Elavl4,Dhx9	Rpl7a,Rpl11,Btf3,Rpl10a,Rpl18,Rpl29,Rpl19,Rpl30,Eef2,Rpl8	Rpl31,Rps29,Rps28,Rpl39,Rps26,Rps23,Rpl38,Rpl6,Rpl24,Rpl18a			
+14	GO:0005747	mitochondrial respiratory chain complex I			Ndufa1,Ndufb4,Ndufs5,Ndufa5,Ndufa3,Ndufb2,Ndufv3,Ndufa2			Ndufs7,Ndufa6,Ndufa13,Ndufb3,Ndufa12
+15	GO:0005744	TIM23 mitochondrial import inner membrane translocase complex			Romo1,Pam16			Timm17a
+16	GO:0000276	mitochondrial proton-transporting ATP synthase complex, coupling factor F(o)		Atp5g2	Atp5l,Atp5g1			Gm10250,Atp5j
+17	GO:0098685	Schaffer collateral - CA1 synapse	Itgb1,Ctnnb1,Efnb2,Akap12	P2rx3,Pfn1,Ina	Ntng1,Shank1	Apba1,Rock2,Cdh11,Lrrtm2,Grm5,Ptprd,Cacna1b,Nefl,L1cam	Gria2,Adcy1,Syn2,Myo5a,Epha4,Synj1,Grm1,Snap91,Lrrc4c,Cadm1,Abr	Nefh,Sh3gl2,Itpr1,Cplx1,Tnr,Cacng3,Pde4a,Iqsec1,Syp,Pcdh8,Syn1,Ppp3ca,Prkar1b
+18	GO:0098982	GABA-ergic synapse	Cnr1	Gap43		Camk4,Erc2,Gabrb3,Lrrtm2,Gabbr2,Atp2b1,Pcdh17,Gabra3	Plcb1,Nrxn3,Kcnd2,Gabrg3,Slc6a1,Atp2b2,Mdga2,Rims1,Syt7,Slc6a11,Sv2a,Nlgn3,Gphn,Cspg5,Cdh13	Gabra1,Calb1,Glrb,Iqsec3,Itpr1,Slc6a17,Gabra2,Gabrb1,Arhgef9,Clstn1,Gabrg2,Lrfn5
+19	GO:0044295	axonal growth cone	Palld	Dbn1	Mapt	Apc,Myo9a,Clasp2,Olfm1,L1cam	Epha4	Snap25,Aatk
+20	GO:0043195	terminal bouton		P2rx3,Hspa8	Rpl26	Erc2,Ptprn2,Gabrb3,Slc18a2,Ap3d1,L1cam	Gria3,Gria2,Grin2b,Unc13c,Aak1,Gria4	Sncb,Adora1,Cck,Grin2a,Cplx1,Grin1,Kcnc2,Rab3a,Cplx2,Syp,Bdnf
+21	GO:1990023	mitotic spindle midzone	Rcc2			Map9,Hnrnpu,Ttc28		
+22	GO:0043198	dendritic shaft	Map2,Ctnnb1	Dbn1,Hspa8	Cnih2	Gria1,Flna,Grm5,Cacna1b,Zfp804a	Gria3,Nsf,Gria2,Epha4,Sez6	Slc12a5,Rgs7bp,Hcn1,Map1a,Cnih3
+23	GO:0099061	integral component of postsynaptic density membrane	Cacng4,Efnb2		Slc16a3,Cnih2	Gria1,Nrcam,Lrrtm2	Gria3,Gria2,Grin2b,Adcy1,Atp2b2,Gria4,Scn8a,Clstn2,Adam22,Grm1,Lrrc4c	Grin2a,Grin1,Cacng3,Clstn1,Lrfn5
+24	GO:0098688	parallel fiber to Purkinje cell synapse		Pfn1	Slc16a3	Plcb4	Gria3,Grin2b,Unc13c,Atp2b2,Scn8a,Synj1,Snap91	Calb2,Grin2a,Kcnj9,Grin1,Cadm3
+25	GO:0032809	neuronal cell body membrane		Ngfr		Atp2b1	Cadm2,Kcnd2,Atp2b2,Hpca,Flrt1	Thy1,Kcna2,Rgs8,Kcnb1,Kcnc1,Kcnc2,Kcnc4,Kcnc3
+26	GO:0043197	dendritic spine	Itgb1,Adam10,Myh10,Nedd4	Cnn3,Arf4,P2rx3,Cfl1,Dbn1,Hspa8	Cnih2,Shank1	Tenm2,Gria1,Apba1,Canx,Grm5,Atp2b1,Psd,Ppp1r9a,Fxr1,Zfp804a	Gria3,Gria2,Grin2b,Syne1,Kcnd2,Epha4,Gria4,Pde4b,Hpca,Atp1a3,Rapgef4,Grm1,Sez6	Fbxo2,Nrgn,Adora1,Rgs7bp,Calb1,Grin2a,Stx4a,Dnm1,Grin1,Asic2,Dnm3,Clstn1,Comt,Arrb1,Ppp3ca,Rgs10
+27	GO:0031594	neuromuscular junction	Nefm,Itgb1,Myh10			Gria1,Serpine2,Nefl,Ppp1r9a	Unc13c,Epha4,Sv2a,Rph3a,Prkce,Dnajc5,App	Vamp1,Dlg2,Syngr1,Pls3,Stx1b,Syt2,Camk2d,Kcnc4,Stxbp5l,Syp,Kcnc3,Ache,Ank3,Prkar1a
+28	GO:0030018	Z disc	Ctnnb1	Csrp2,Synm		Flna	Grin2b,Hspb1,Scn8a,Atp2b4,Pde4b,Ryr2,Dst,Ppp3cb	Ahnak2,Scn1a,Aldoa,Sphkap,Pdlim7,Anxa5,Ank1,Ppp3ca,Ank3,Stub1,Fkbp1b
+29	GO:0008076	voltage-gated potassium channel complex	Cntn2			Kcnq3	Kcnd2,Dpp10	Kcnip4,Snap25,Kcna2,Kcna1,Kcnab2,Cntnap1,Hcn1,Dlg2,Kcnb1,Kcnc1,Kcnc2,Kcna6,Vamp2,Kcnc4,Kcnj5,Kcnk1,Calm1,Kcnc3,Kcnip1,Kcnq2
+30	GO:0044305	calyx of Held					Unc13c,Atp1a3	Adora1,Calb1,Kcna2,Kcna1,Cplx1,Kcnc1,Htr1b,Cplx2,Kcnc4,Prkcb,Tprgl
+31	GO:0032590	dendrite membrane		Ngfr		Gria1,Atp2b1,Gabra3	Gabrg3,Hpca	Thy1,Slc12a5,Gabra1,Hcn1,Gabarapl1,Kcnb1,Grin1,Kcnc1,Kcnc2,Kcnc4,Gabra2,Kcnc3,Gabrg2
+32	GO:0030285	integral component of synaptic vesicle membrane				Ptprn2,Slc18a2,Atp8a1	Slc17a6,Sv2a,Scamp1,Atp6v0a1	Atp6v1g2,Syt1,Syngr1,Synpr,Syt2,Slc6a17,Vamp2,Tmem163,Gabra2,Sv2c,Syp
+33	GO:0043204	perikaryon	Brd1,Nefm	Ngfr,Hspa8	Ptpn5	Nell2,Kif5a,Reln	Gria3,Gria2,Mapk9,Camk2b,Hspb1,Epha4,Hpca,Rbfox3	Eno2,Slc12a5,Map2k1,Rgs7bp,Kcna2,Cck,Nefh,Crhbp,Kcnb1,Anxa5,Kcnc2,Mapk10,Ckmt1,Resp18,Pde10a,Pcsk2,Pam,Bdnf
+34	GO:0043194	axon initial segment	Map2			Kcnq3,Nrcam,Nav1	Scn8a	Scn1a,Cck,Map1a,Camk2d,Ank1,Ank3,Kcnq2

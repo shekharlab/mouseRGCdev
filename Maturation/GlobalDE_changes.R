@@ -46,6 +46,20 @@ change_fac = sapply(var.genes, function(j){
 
 change_fac = sort(change_fac, decreasing=TRUE)
 
+# Randomized change fac
+change_fac_rand = sapply(var.genes, function(j){
+  if (max(ExpMat_global$PercMat[j,]) < 0.2) { return(0) }
+  x = ExpMat_global$PercMat[j,] * ExpMat_global$ExpMat[j,] * size_fac
+  if ((max(x) - min(x)) / min(x) < 0.3){ return(0) }
+  
+  a=ExpMat_rand2_global$PercMat[j,] * ExpMat_rand2_global$ExpMat[j,]; b=ExpMat_rand_global$PercMat[j,] * ExpMat_rand_global$ExpMat[j,];
+  #return(sum((a-b)^2) / sqrt(mean(a^2)*mean(b^2)))
+  return(sum((a-b)^2) / sqrt(mean((a+0.1)^2)*mean((b+0.1)^2)))
+  #return(sum((a-b)^2) * sqrt(sum(diff(a,1)^2))/sqrt(sum(diff(b,1)^2)))
+})
+
+change_fac_rand = sort(change_fac_rand, decreasing=TRUE)
+
 time_max = sapply(var.genes, function(j){
   return(colnames(ExpMat_global$PercMat)[which.max(ExpMat_global$PercMat[j,] * ExpMat_global$ExpMat[j,] * size_fac)])
 })

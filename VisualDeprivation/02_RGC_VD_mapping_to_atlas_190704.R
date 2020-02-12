@@ -9,7 +9,7 @@ source(paste0(dirpath,"scR_plotting.R"))
 UMAP <- reticulate::import("umap")
 
 #Read perturbed RGC
-rgc_perturb = readRDS("Objects/rgc_perturb_filt_191122.Rdata.rds")
+load("Objects/rgc_perturb_filt_191122.Rdata")
 
 #Read atlas
 rgc_atlas = readRDS("../Developing_RGCs/Objects/rgc_atlas_190911_withP56.rds")

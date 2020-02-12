@@ -214,73 +214,6 @@ dev.off()
 
 
 
-# Look at global differences  (Down)
-downGO = list()
-downGO[["DR"]] = topGOterms(fg.genes = down_genes[["DR"]], bg.genes = c(all_up_genes, all_down_genes), ontology.use = "BP")
-downGO[["RD1"]] = topGOterms(fg.genes = down_genes[["RD1"]], bg.genes = c(all_up_genes, all_down_genes), ontology.use = "BP")
-
-downGO[["BCless"]] = topGOterms(fg.genes = down_genes[["BCless"]], bg.genes = c(all_up_genes, all_down_genes), ontology.use = "BP")
-
-df = downGO[["DR"]]$res.table; df$condition = "DR"
-df_temp = downGO[["RD1"]]$res.table; df_temp$condition = "RD1"; df = rbind(df, df_temp)
-df_temp = downGO[["BCless"]]$res.table; df_temp$condition = "BCless";df = rbind(df, df_temp)
-
-terms = downGO[["DR"]]$res.table$GO.ID[c(1,2,3,5,9)]
-terms = c(terms,downGO[["RD1"]]$res.table$GO.ID[c(1,2,4,5)] )
-terms = c(terms,downGO[["BCless"]]$res.table$GO.ID[c(2,3,7)] )
-
-downGO_VD = -log10(matrix(runif(12*3,min=0.1, max=1), nrow=12))
-colnames(downGO_VD) = c("DR","RD1","BCless")
-rownames(downGO_VD) = terms
-l=1
-
-row_names_new = c()
-for (g in c("DR","RD1","BCless")){
-  df_temp = subset(df, (GO.ID %in% terms) & condition == g)
-  rownames(df_temp) = df_temp$Term
-  row_names_new = c(row_names_new, rownames(df_temp))
-  downGO_VD[df_temp$GO.ID, g] = -log10(as.numeric(df_temp$pval))
-}
-pdf("Figs/GlobalGO_VD_down.pdf",w=7,h=6,useDingbats = FALSE)
-DataHeatmap(t(DownGO_VD))
-dev.off()
-
-# Up genes
-
-upGO = list()
-upGO[["DR"]] = topGOterms(fg.genes = up_genes[["DR"]], bg.genes = c(all_up_genes, all_down_genes), ontology.use = "BP")
-upGO[["RD1"]] = topGOterms(fg.genes = up_genes[["RD1"]], bg.genes = c(all_up_genes, all_down_genes), ontology.use = "BP")
-
-upGO[["BCless"]] = topGOterms(fg.genes = up_genes[["BCless"]], bg.genes = c(all_up_genes, all_down_genes), ontology.use = "BP")
-
-df = upGO[["DR"]]$res.table; df$condition = "DR"
-df_temp = upGO[["RD1"]]$res.table; df_temp$condition = "RD1"; df = rbind(df, df_temp)
-df_temp = upGO[["BCless"]]$res.table; df_temp$condition = "BCless";df = rbind(df, df_temp)
-
-terms = upGO[["DR"]]$res.table$Term[c(1,2,3,6,7,9)]
-terms = c(terms,upGO[["RD1"]]$res.table$Term[c(1,3,4,5,6,8,9)] )
-terms = c(terms,upGO[["BCless"]]$res.table$Term[c(1,2,3,5,14)] )
-terms = unique(terms)
-
-
-
-upGO_VD = -log10(matrix(runif(15*3,min=0.1, max=1), nrow=15))
-colnames(upGO_VD) = c("DR","RD1","BCless")
-rownames(upGO_VD) = terms
-l=1
-
-for (g in c("DR","RD1","BCless")){
-  df_temp = subset(df, (Term %in% terms) & condition == g)
-  rownames(df_temp) = df_temp$Term
-  upGO_VD[df_temp$Term, g] = -log10(as.numeric(df_temp$pval))
-}
-
-pdf("Figs/GlobalGO_VD_up.pdf",w=6.5,h=6,useDingbats = FALSE)
-DataHeatmap(t(upGO_VD), quantile.thresh = c(0.1, 0.83))
-dev.off()
-
-
-
 #########################################################
 ### Analyze Type Specific Differences #########
 ########################################################
@@ -396,6 +329,11 @@ for (g in c("RD1", "DR", "BCless")){
     #de$DE = de$DE[setdiff(rownames(de$DE), intersect(rownames(de$DE), rownames(de_global))),]
     up_genes_type[[g]] = c( up_genes_type[[g]], rownames(subset(de$DE, diff >= log(1.5) & pct_clust1 > 0.3))) 
     down_genes_type[[g]] = c( down_genes_type[[g]], rownames(subset(de$DE, diff <= -log(1.5) & pct_clust2 > 0.3))) 
+    
+    if ("Dscam" %in% rownames(subset(de$DE, diff <= -log(1.5) & pct_clust2 > 0.3))){
+      print(rgc_type)
+      print(subset(de$DE, diff <= -log(1.5) & pct_clust2 > 0.3))
+    }
   }
   
   up_genes_global[[g]] = up_genes_type[[g]][up_genes_type[[g]] %in% global_genes]
@@ -475,71 +413,217 @@ all_up_genes_global = unique(unlist(up_genes_global))
 all_down_genes_type = unique(unlist(down_genes_type))
 all_down_genes_global = unique(unlist(down_genes_global))
 
-# Look at global differences  (Down)
-bg_genes = c(all_up_genes_type, all_down_genes_type, all_up_genes_global, all_down_genes_global)
-downGO = list()
-downGO[["DR"]] = topGOterms(fg.genes = c(down_genes_global[["DR"]],down_genes_type[["DR"]]) , bg.genes = bg_genes, ontology.use = "BP", topnodes.print = 500)
-downGO[["RD1"]] = topGOterms(fg.genes = c(down_genes_global[["RD1"]],down_genes_type[["RD1"]]), bg.genes = bg_genes, ontology.use = "BP",topnodes.print = 500)
-
-downGO[["BCless"]] = topGOterms(fg.genes = c(down_genes_global[["BCless"]],down_genes_type[["BCless"]]), bg.genes = bg_genes, ontology.use = "BP",topnodes.print = 500)
+# Look at all differences
+bg_genes = unique(c(all_up_genes_type, all_down_genes_type, all_up_genes_global, all_down_genes_global))
 
 df = downGO[["DR"]]$res.table; df$condition = "DR"
 df_temp = downGO[["RD1"]]$res.table; df_temp$condition = "RD1"; df = rbind(df, df_temp)
 df_temp = downGO[["BCless"]]$res.table; df_temp$condition = "BCless";df = rbind(df, df_temp)
-
-terms = downGO[["DR"]]$res.table$Term[c(2,3,4,6,7,16,19)]
-terms = c(terms,downGO[["RD1"]]$res.table$Term[c(4,5,6,10)] )
-terms = c(terms,downGO[["BCless"]]$res.table$Term[c(2,3,8,9,10)] )
-terms = unique(terms)
-downGO_VD = -log10(matrix(runif(length(terms)*3,min=0.1, max=1), nrow=length(terms)))
-colnames(downGO_VD) = c("DR","RD1","BCless")
-rownames(downGO_VD) = terms
-l=1
-
-row_names_new = c()
-for (g in c("DR","RD1","BCless")){
-  df_temp = subset(df, (Term %in% terms) & condition == g)
-  rownames(df_temp) = df_temp$Term
-  row_names_new = c(row_names_new, rownames(df_temp))
-  downGO_VD[df_temp$Term, g] = -log10(as.numeric(df_temp$pval))
+source("topNonRedundantGOTerms.R")
+for (direction in c("Down","Up")){
+  
+  if (direction == "Down"){
+    gene_list_global = down_genes_global
+    gene_list_type = down_genes_type
+  } else {
+    gene_list_global = up_genes_global
+    gene_list_type = up_genes_type
+  }
+  
+flag = 0;
+GOres = list()
+for (term in c("BP","MF","CC")){
+  GOres[[term]] = list()
+  for (vd in c("DR","RD1","BCless")){
+    GOres[[term]][[vd]] = topGOterms(fg.genes = unique(c(gene_list_global[[vd]],gene_list_type[[vd]])) , bg.genes = bg_genes, ontology.use = term, topnodes.print = 500)
+    if (flag == 0){
+      df = GOres[[term]][[vd]]$res.table
+      df$vd = vd
+      df$ontology = term
+      flag = 1
+    } else {
+      df_temp = GOres[[term]][[vd]]$res.table
+      df_temp$vd = vd
+      df_temp$ontology = term
+      df = rbind(df, df_temp)
+    }
+  }
+}
+  
+  # Find terms to plot
+GOterms_to_plot = c()
+  for (vd in c("DR","RD1","BCless")){
+    for (term in c("BP","MF","CC")){
+      tmp_terms = topNonRedundantTerms(GOres[[term]][[vd]]$GOdata, 
+                                       GOres[[term]][[vd]]$res.table,avoid_terms = GOterms_to_plot)
+      GOterms_to_plot = unique(c(GOterms_to_plot, tmp_terms))
+      
+  }
+}
+  
+  GO_df = -log10(matrix(runif(length(GOterms_to_plot)*3,min=0.1, max=1), nrow=length(GOterms_to_plot)))
+  colnames(GO_df) = c("DR","RD1","BCless")
+  rownames(GO_df) = GOterms_to_plot
+  l=1
+  Ontology_df = zeros(nrow(GO_df),3)
+  colnames(Ontology_df) = c("BP","MF","CC")
+  rownames(Ontology_df) = GOterms_to_plot
+  
+  row_names_new = c()
+  for (c1 in c("DR","RD1","BCless")){
+    df_temp = subset(df, (GO.ID %in% GOterms_to_plot) & vd == c1)
+    rownames(df_temp) = df_temp$Term
+    pval_log = -log10(as.numeric(df_temp$pval))
+    pval_log[is.na(pval_log)] = 30
+    GO_df[df_temp$GO.ID, c1] = pval_log
+    
+    for (term2 in c("BP", "MF", "CC")){
+      Ontology_df[subset(df_temp, ontology == term2)$GO.ID,term2] = 1
+    } 
+    
+  }
+  
+  GO_df[GO_df > 5] = 5
+  GO_terms = rownames(GO_df)
+  
+  rownames_df = subset(df, GO.ID %in% rownames(GO_df))[,c(1,2)]
+  rownames_df = rownames_df[!duplicated(rownames_df),]
+  rownames(rownames_df) = rownames_df$GO.ID
+  rownames(GO_df) = rownames_df[rownames(GO_df), "Term"]
+  rownames(Ontology_df) = rownames(GO_df)
+  
+  # Reorder
+  new_row_ord = order(apply(GO_df,1, which.max))
+  
+  GO_terms = GO_terms[new_row_ord]
+  p1 = DataHeatmap(t(GO_df[new_row_ord,]), return.plot = TRUE)
+  Ontology_df = Ontology_df[new_row_ord,]
+  rownames(Ontology_df) = NULL
+  p2= DataHeatmap(t(Ontology_df), return.plot = TRUE, col.low = "white",col.mid = "white", col.high = "black", cex.row = 0.001)
+  pdf(paste0("Figs/VD_GOheatmap_", direction,"_genes.pdf"),w=10,h=6,useDingbats = FALSE)
+  plot_grid(p1,p2, rel_widths = c(0.8,0.2))
+  dev.off()
+  
+  
+  # Print table
+  gene_terms_all = list()
+  gene_terms_all[["BP"]] = genesInTerm(GOres[["BP"]][["DR"]]$GOdata)
+  gene_terms_all[["MF"]] = genesInTerm(GOres[["MF"]][["DR"]]$GOdata)
+  gene_terms_all[["CC"]] = genesInTerm(GOres[["CC"]][["DR"]]$GOdata)
+  
+  names(GO_terms) = rownames(GO_df[new_row_ord,])
+  l=1
+  for (goterm in GO_terms){
+    df_print_tmp = data.frame(GO.ID = goterm, Term = names(GO_terms)[GO_terms==goterm])
+    rownames(df_print_tmp) = NULL
+    
+    for  (term2 in c("BP","MF","CC")){
+      if (goterm %in% names(gene_terms_all[[term2]])){
+        df_print_tmp$category = term2
+        break
+      }
+    }
+    
+    for (c1 in c("DR","RD1","BCless")){
+      genes_in_mod_global = intersect(gene_terms_all[[term2]][[goterm]], gene_list_global[[c1]])
+      genes_in_mod_type = intersect(gene_terms_all[[term2]][[goterm]], gene_list_type[[c1]])
+      df_print_tmp[,paste0(c1,"_global")] = paste(genes_in_mod_global, collapse=",")
+      df_print_tmp[,paste0(c1,"_type")] = paste(genes_in_mod_type, collapse=",")
+      
+    }
+    
+    if (l==1){
+      df_GOprint = df_print_tmp
+      l=2
+    } else {
+      df_GOprint = rbind(df_GOprint, df_print_tmp)
+    }
+    
+  }
+  
+  write.table(df_GOprint, file=paste0("Txt/VD_GO_terms_", direction,".txt"), sep="\t", quote=FALSE)
+  
+  
 }
 
-pdf("Figs/GlobalTypeGO_VD_down.pdf",w=7,h=6,useDingbats = FALSE)
-DataHeatmap(t(downGO_VD))
-dev.off()
-
-# Up genes
-
-upGO = list()
-upGO[["DR"]] = topGOterms(fg.genes = c(up_genes_type[["DR"]], up_genes_global[["DR"]]), bg.genes = bg_genes, ontology.use = "BP", topnodes.print = 500)
-upGO[["RD1"]] = topGOterms(fg.genes = c(up_genes_type[["RD1"]], up_genes_global[["RD1"]]), bg.genes = bg_genes, ontology.use = "BP", topnodes.print = 500)
-
-upGO[["BCless"]] = topGOterms(fg.genes = c(up_genes_type[["BCless"]], up_genes_global[["BCless"]]), bg.genes = bg_genes, ontology.use = "BP", topnodes.print = 500)
-
-df = upGO[["DR"]]$res.table; df$condition = "DR"
-df_temp = upGO[["RD1"]]$res.table; df_temp$condition = "RD1"; df = rbind(df, df_temp)
-df_temp = upGO[["BCless"]]$res.table; df_temp$condition = "BCless";df = rbind(df, df_temp)
-
-terms = upGO[["DR"]]$res.table$Term[c(2,3,4,6,7,9)]
-terms = c(terms,upGO[["RD1"]]$res.table$Term[c(2,5,7,9,12)] )
-terms = c(terms,upGO[["BCless"]]$res.table$Term[c(2,3,4,5,10,11)] )
-terms = unique(terms)
-
-
-
-upGO_VD = -log10(matrix(runif(length(terms)*3,min=0.1, max=1), nrow=length(terms)))
-colnames(upGO_VD) = c("DR","RD1","BCless")
-rownames(upGO_VD) = terms
+#### Compare with maturation
+maturation_mods = read.table("Txt/MaturationModulesRGC.txt", sep = "\t", stringsAsFactors = FALSE)
 l=1
-
-for (g in c("DR","RD1","BCless")){
-  df_temp = subset(df, (Term %in% terms) & condition == g)
-  rownames(df_temp) = df_temp$Term
-  upGO_VD[df_temp$Term, g] = -log10(as.numeric(df_temp$pval))
+for (direction in c("Up", "Down")){
+  
+  if (direction == "Down"){
+    gene_list_global = down_genes_global
+    gene_list_type = down_genes_type
+  } else {
+    gene_list_global = up_genes_global
+    gene_list_type = up_genes_type
+  }
+  
+  for (vd in c("DR", "RD1", "BCless")){
+    genes_global  = unique(gene_list_global[[vd]])
+    genes_type  = unique(gene_list_type[[vd]])
+    
+    # Global
+    genes_all = rownames(rgc_adult_pert@data)
+    genes_global = intersect(genes_global, genes_all)
+    genes_type = intersect(genes_type, genes_all)
+    
+    df_temp = data.frame(direction = direction, VD = vd)
+    
+    for (c1 in c(1:6)){
+      genes_mod = intersect(maturation_mods[,c1], genes_all)
+      
+      # Global
+      m_global = max(length(genes_mod), length(genes_global))
+      n_global = length(genes_all) - m_global
+      k1_global = min(length(genes_mod), length(genes_global))
+      o_global = length(intersect(genes_mod, genes_global));
+      logPval = -log10(sum(dhyper(o_global:k1_global, m_global, n_global , k1_global)))
+      df_temp[,paste0("Module",c1,"_global")] = logPval
+      
+      
+      # Type specific
+      m_type = max(length(genes_mod), length(genes_type))
+      n_type = length(genes_all) - m_type; 
+      k1_type = min(length(genes_mod), length(genes_type)); 
+      o_type = length(intersect(genes_mod, genes_type)); 
+      
+      logPval = -log10(sum(dhyper(o_type:k1_type, m_type, n_type , k1_type)))
+      df_temp[,paste0("Module",c1,"_type")] = logPval
+    }
+    
+    if (l==1){
+      df_overlap = df_temp
+      l=2
+    } else {
+      df_overlap = rbind(df_overlap,df_temp)
+    }
+    
+    
+  }
+  
 }
 
-pdf("Figs/GlobalTypeGO_VD_up.pdf",w=6.5,h=6,useDingbats = FALSE)
-DataHeatmap(t(upGO_VD))
+df2 = melt(df_overlap)
+df2$type = sapply(as.character(df2$variable), getStat2)
+df2$module = sapply(as.character(df2$variable), getStat1)
+
+# Global
+df3 = subset(df2, type == "global" & direction == "Up")
+p1=ggplot(df3, aes(x=VD, y=value)) + geom_bar(stat="identity", position="dodge", aes(fill=factor(module)), color="black") + ggtitle("Global Up") + ylab("-log10(P)") + ylim(c(0,100))  + geom_hline(yintercept = 4, linetype="dashed", color="red") + xlab("") + theme_classic()
+# Type
+df3 = subset(df2, type == "type" & direction == "Up")
+p2=ggplot(df3, aes(x=VD, y=value)) + geom_bar(stat="identity", position="dodge", aes(fill=factor(module)), color="black") + ggtitle("Type Specific Up") + ylab("-log10(P)") + ylim(c(0,100)) + geom_hline(yintercept = 4, linetype="dashed", color="red") + xlab("") + theme_classic()
+
+# Global
+df3 = subset(df2, type == "global" & direction == "Down")
+p3=ggplot(df3, aes(x=VD, y=value)) + geom_bar(stat="identity", position="dodge", aes(fill=factor(module)), color="black") + ggtitle("Global Down") + ylab("-log10(P)") + ylim(c(0,100)) + geom_hline(yintercept = 4, linetype="dashed", color="red") + xlab("") + theme_classic()
+
+
+# Type
+df3 = subset(df2, type == "type" & direction == "Down")
+p4=ggplot(df3, aes(x=VD, y=value)) + geom_bar(stat="identity", position="dodge", aes(fill=factor(module)), color="black") + ggtitle("Type Specific Down") + ylab("-log10(P)") + ylim(c(0,100)) + geom_hline(yintercept = 4, linetype="dashed", color="red") + xlab("") + theme_classic()
+
+pdf("Figs/VD_Developmental_Modules_overlap.pdf", w=8,h=5,useDingbats = FALSE)
+plot_grid(p1,p2,p3,p4)
 dev.off()
-
-

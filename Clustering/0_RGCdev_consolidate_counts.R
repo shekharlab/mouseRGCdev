@@ -1,6 +1,6 @@
 # Combine UMI counts of datasets at all developmental ages E13, E14, E16, P0, P5
 
-# Accessory function
+# Accessory function to collapse duplicate genes
 CollapseCountMatrix = function(Count_data, single_genes, duplicate_genes){
   
   Count_data_new = Count_data[single_genes,]
@@ -17,22 +17,23 @@ CollapseCountMatrix = function(Count_data, single_genes, duplicate_genes){
   
 }
 
+
 ################################################
-##### Read Data ###############################
+##### Consolidate Count data ####################
 ###############################################
 
 # Load Dec 2017 data
-load("../../RawData/mouseP0E16_Dec2017_10X.Rdata")
+load("../RawData/mouseP0E16_Dec2017_10X.Rdata")
 colnames(Count.mat_mouseP0E16) = gsub("RGC_","RGCS1_",colnames(Count.mat_mouseP0E16))
 
 # Load Feb 2018 data
-load("../../RawData/MouseEarlyRGC_Feb09_10X.Rdata")
+load("../RawData/MouseEarlyRGC_Feb09_10X.Rdata")
 colnames(Count.mat_EarlyRGC) = gsub("RGC_","RGCS1_",colnames(Count.mat_EarlyRGC))
 
 Count.mat = cbind(Count.mat_mouseP0E16, Count.mat_EarlyRGC)
 rm(Count.mat_EarlyRGC); rm(Count.mat_mouseP0E16)
 
-# Rename P0S2 as E14 s2
+# Rename P0S2 as E14 s2 (this was a labeling error during sequencing!)
 cells.p0_1 = grep("P0Cd90RGCS2", colnames(Count.mat))
 cells.p0_2 = grep("P0L1camRGCS2", colnames(Count.mat))
 
@@ -45,7 +46,7 @@ colnames(Count.mat)[cells.e14_1] = gsub("E14Cd90RGCS1","P0Cd90RGCS2",colnames(Co
 colnames(Count.mat)[cells.e14_2] = gsub("E14L1camRGCS1","P0L1camRGCS2",colnames(Count.mat)[cells.e14_2])
 
 # Add new E13E14 data
-NewData = readRDS("../../RawData/RGC_E13E14_July2019.rds")
+NewData = readRDS("../RawData/RGC_E13E14_July2019.rds")
 E14_new = NewData$Counts_e14s2; E13_new = NewData$Counts_e13s1
 colnames(E14_new) = gsub("E14CD9021","E14Cd90RGCS2", colnames(E14_new))
 colnames(E14_new) = gsub("L1camS2","L1camRGCS2", colnames(E14_new))
@@ -66,7 +67,7 @@ Count_mat_E14 = CollapseCountMatrix(E14_new, single_genes, duplicate_genes)
 Count.mat_E13toP0 = cbind(Count_mat_E13[rownames(Count.mat),],
                       cbind(Count_mat_E14[rownames(Count.mat),],
                       Count.mat[rownames(Count.mat),]))
-saveRDS(Count.mat_E13toP0, file="../../RawData/Counts_E13toP0.rds")
+saveRDS(Count.mat_E13toP0, file="../RawData/Counts_E13toP0.rds")
 
 
 ######################################################
@@ -76,7 +77,7 @@ saveRDS(Count.mat_E13toP0, file="../../RawData/Counts_E13toP0.rds")
 # Load data (DropSeq P5)
 Count.mat_p5dsq = readRDS("../../RawData/p5_DropSeq_reSeq_2018.rds")
 # Load Data (10X)
-load("../../RawData/p5rgc_counts_Dec16.Rdata")
+load("../RawData/p5rgc_counts_Dec16.Rdata")
 
 genes.to.use = intersect(rownames(Count.mat),rownames(Count.mat_p5dsq))
 
@@ -88,4 +89,4 @@ plot(rowMeans(Count.mat_p510x[genes.to.use,]),rowMeans(Count.mat_p5dsq[genes.to.
 
 Count.mat_p5 = cbind(Count.mat_p5dsq[genes.to.use,], Count.mat_p510x[genes.to.use,] )
 
-save(Count.mat_p5, file="../../RawData/Counts_P5.rds")
+save(Count.mat_p5, file="../RawData/Counts_P5.rds")

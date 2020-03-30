@@ -1,13 +1,21 @@
-assign("dirpath", "/home/kshekhar/CompRepos/single_cellR/", envir = .GlobalEnv)
-assign("fast_tsne_script", "fast_tsne.R", envir = .GlobalEnv)
+# Combine UMI counts of datasets at all developmental ages E13, E14, E16, P0, P5
 
-source(paste0(dirpath,"ObjectConversion.R"))
-source(paste0(dirpath,"sc.R"))
-source(paste0(dirpath, "scFunctions.R"))
-source(paste0(dirpath,"scR_DE.R"))
-source(paste0(dirpath,"scR_plotting.R"))
-UMAP <- reticulate::import("umap")
-
+# Accessory function
+CollapseCountMatrix = function(Count_data, single_genes, duplicate_genes){
+  
+  Count_data_new = Count_data[single_genes,]
+  
+  for (g in duplicate_genes){
+    
+    genes_to_collapse = c(g, grep(paste0(g,"\\.[1-8]"), rownames(Count_data), value=TRUE))
+    print(genes_to_collapse)
+    Count_data_new = rbind(Count_data_new, colSums(Count_data[genes_to_collapse,]))
+    rownames(Count_data_new)[nrow(Count_data_new)] = g
+  }
+  
+  return(Count_data_new)
+  
+}
 
 ################################################
 ##### Read Data ###############################
@@ -51,21 +59,6 @@ genes.dup = setdiff(rownames(E13_new), genes.unique)
 duplicate_genes = unique(gsub("\\.[1-8]", "", genes.dup))
 single_genes = setdiff(genes.unique, duplicate_genes)
 
-CollapseCountMatrix = function(Count_data, single_genes, duplicate_genes){
-  
-  Count_data_new = Count_data[single_genes,]
-  
-  for (g in duplicate_genes){
-    
-    genes_to_collapse = c(g, grep(paste0(g,"\\.[1-8]"), rownames(Count_data), value=TRUE))
-    print(genes_to_collapse)
-    Count_data_new = rbind(Count_data_new, colSums(Count_data[genes_to_collapse,]))
-    rownames(Count_data_new)[nrow(Count_data_new)] = g
-  }
-  
-  return(Count_data_new)
-  
-}
 
 Count_mat_E13 = CollapseCountMatrix(E13_new, single_genes, duplicate_genes)
 Count_mat_E14 = CollapseCountMatrix(E14_new, single_genes, duplicate_genes)

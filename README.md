@@ -9,3 +9,7 @@ A summary of the main scripts used in this paper
 3. `2_ClarkGiudice_comparison.R` - Joint analysis of E14, E16 and P0 cells in this dataset with corresponding whole retinal scRNA-seq datasets.
      *  Clark et al., *Neuron*, 2019. Count matrices corresponding to E14, E16 and P0 were downloaded from `https://github.com/gofflab/developing_mouse_retina_scRNASeq`
      * Giudice et al., *Development*, 2019. Count matrix (E15.5 cells) was obtained from the author upon request. 
+     
+4. `3_rgc[E13,E14,E16,P0,P5]_clustering.R` - Dimensionality and clustering analysis of RGCs at E13, E14, E16, P0 and P5 respectively. S4 objects corresponding to each time point are saved in each case. 
+
+5. `4_Clusteredness_analysis/Clusteredness_analysis_Fig2.R` - Analysis of RGC diversity and separatendness in transcriptional space at different time points. 

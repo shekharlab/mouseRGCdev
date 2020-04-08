@@ -6,4 +6,5 @@ A summary of the main scripts used in this paper
 
 2. `1_InitialClustering_Filtering.R` - Combined clustering analysis to define major cell classes, separate RGCs from the rest, and save S4 objects corresponding to RGCs at each time point. Also generates plots displayed in Figures 1, S1.
 
-3. `2_Clark_comparison.R` - Joint analysis of E14, E16 and P0 cells with whole retinal scRNA-seq data from Clark et al., *Neuron*, 2019. The data were downloaded from `https://github.com/gofflab/developing_mouse_retina_scRNASeq`
+3. `2_ClarkGiudice_comparison.R` - Joint analysis of E14, E16 and P0 cells in this dataset with corresponding whole retinal scRNA-seq datasets.
+- from Clark et al., *Neuron*, 2019 and . The data were downloaded from `https://github.com/gofflab/developing_mouse_retina_scRNASeq`

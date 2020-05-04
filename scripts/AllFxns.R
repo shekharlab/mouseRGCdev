@@ -81,7 +81,7 @@ XGBoost_train = function(train_object0, var.genes, do.scale=FALSE,scale.mean = N
   max.cells.per.ident = 300; train.frac = 0.6
   training.set = c(); validation.set=c()
   training.label = c(); validation.label=c();
-  print(paste0("Using mininum of ", 0.4*100, " percent cells or ", max.cells.per.ident, " cells per cluster for training"))
+  print(paste0("Using mininum of ", train.frac*100, " percent cells or ", max.cells.per.ident, " cells per cluster for training"))
   for (i in as.character(levels(train_object0@ident))){
     cells.in.clust = which.cells(train_object0,i);
     n = min(max.cells.per.ident, round(length(cells.in.clust)*train.frac))

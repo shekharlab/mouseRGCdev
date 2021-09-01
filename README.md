@@ -1,6 +1,6 @@
 # mouseRGCdev
 
-A summary of the main scripts used in this paper
+A summary of the main scripts used in the paper "Diversification of multipotential postmitotic mouse retinal ganglion cell precursors into discrete types" by Shekhar et al., 2021.
 
 1. `0_DataPrep.R` - This script combines count matrices from various experiments and tags each cell (column) with an ID that indicates its sample of origin. The script saves combined count matrices (genes x cells) as two separate files `RawData/Counts_E13toP0.rds` and `RawData/Counts_P5.rds`. P5 Data was kept separate as it was primarily generated using Drop-seq
 
@@ -13,3 +13,6 @@ A summary of the main scripts used in this paper
 4. `3_rgc[E13,E14,E16,P0,P5]_clustering.R` - Dimensionality and clustering analysis of RGCs at E13, E14, E16, P0 and P5 respectively. S4 objects corresponding to each time point are saved in each case. 
 
 5. `4_Clusteredness_analysis/Clusteredness_analysis_Fig2.R` - Analysis of transcriptomic diversity and separatedness of RGC clusters at different time points. 
+
+
+The data used in the study will be made publicly available once the paper is in press. Please feel free to email kshekhar@berkeley.edu for any questions. 

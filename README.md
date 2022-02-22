@@ -15,4 +15,16 @@ A summary of the main scripts used in the paper "Diversification of multipotenti
 5. `4_Clusteredness_analysis/Clusteredness_analysis_Fig2.R` - Analysis of transcriptomic diversity and separatedness of RGC clusters at different time points. 
 
 
-The data used in the study will be made publicly available once the paper is in press. Please feel free to email kshekhar@berkeley.edu for any questions. 
+The data used in the study is also publicly available in processed form here:
+
+https://drive.google.com/drive/folders/1zLxKKt7xLiVE1NdOvKrIPZ3OjvG418yl?usp=sharing
+
+Data are organized by age. In each folder, there should be the following files (as an example for E13),
+
+- `rgcE13_processed.mtx` : log-normalized expression matrix (genes x cells)
+- `barcodes_E13.tsv` : Cell barcodes
+- `features_E13.tsv` : Gene names (M. musculus)
+- `rgcE13_metadata.tsv` : Metadata containing SampleID, Louvain Cluster, and columns for OT-calculated trajectory values for each terminal RGC type C1-C45. For example, the column "C14_traj" represents the fate associations of E13 cells with type C14. For more information on computing trajectories, see here:
+https://broadinstitute.github.io/wot/tutorial/#notebook-3-inferring-long-range-temporal-couplings 
+
+ Please feel free to email kshekhar@berkeley.edu for any questions. 
